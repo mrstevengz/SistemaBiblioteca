@@ -17,4 +17,14 @@ public class Categoria {
     private String nombre;
     @ManyToMany
     private Set<Libro> libros;
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Categoria{");
+        sb.append("id=").append(id);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", libros=").append(libros);
+        sb.append('}');
+        return sb.toString();
+    }
 }
