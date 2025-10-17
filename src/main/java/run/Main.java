@@ -45,12 +45,11 @@ public class Main {
         }
 
         em.close();
-        JPAUtil.close();
+        JPAUtil.closeEntityManager();
         sc.close();
         System.out.println("Aplicación finalizada.");
     }
 
-    //Menu de los autores java 
     private static void menuAutores(AutorDAO autorDAO) {
         boolean salir = false;
         while (!salir) {
@@ -358,3 +357,4 @@ public class Main {
         }
     }
 }
+

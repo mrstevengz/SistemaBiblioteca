@@ -22,9 +22,9 @@ public class Libro  {
     private String titulo;
     @Column(name= "anno publicacion", nullable = false)
     private Date anno;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) //Se establece la relacion muchos a uno entre libros y autores
     private Autor autor;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY) //Se establece la relacion muchos a muchos entre libros y categorias
     private Set<Categoria> categorias;
 
     @Override

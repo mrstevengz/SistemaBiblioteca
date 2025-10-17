@@ -15,7 +15,7 @@ public class Categoria {
     private int id;
     @Column(name = "nombre", length = 100, nullable = false)
     private String nombre;
-    @ManyToMany
+    @ManyToMany //Se establece la relacion muchos a muchos entre categorias y libros
     private Set<Libro> libros;
 
     @Override
