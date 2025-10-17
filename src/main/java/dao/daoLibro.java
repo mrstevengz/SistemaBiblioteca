@@ -36,7 +36,7 @@ public class LibroDAO implements ICRUD<Libro> {
         }
         return null;
     }
-
+    //eliminar un libro por id
     @Override
     public void eliminar(int id) {
         Libro libro = em.find(Libro.class, id);
