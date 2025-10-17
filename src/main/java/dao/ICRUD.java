@@ -1,4 +1,8 @@
 package dao;
 
-public class ICRUD {
+import java.util.List;
+
+public interface ICRUD<T> {
+    T guardar(T t);
+
 }
