@@ -5,9 +5,9 @@ import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class daoCategoria implements ICRUD<Categoria>{
+public class CategoriaDAO implements ICRUD<Categoria>{
     private final EntityManager em;
-    public daoCategoria(EntityManager em) {
+    public CategoriaDAO(EntityManager em) {
         this.em = em;
     }
     @Override

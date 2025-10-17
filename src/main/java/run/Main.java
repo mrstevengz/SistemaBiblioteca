@@ -2,9 +2,9 @@
 package run;
 
 import config.JPAUtil;
-import dao.daoAutor;
-import dao.daoCategoria;
-import dao.daoLibro;
+import dao.AutorDAO;
+import dao.CategoriaDAO;
+import dao.LibroDAO;
 import entities.Autor;
 import entities.Categoria;
 import entities.Libro;
@@ -22,9 +22,9 @@ public class Main {
 
     public static void main(String[] args) {
         EntityManager em = JPAUtil.getEntityManager();
-        daoAutor autorDAO = new daoAutor(em);
-        daoCategoria categoriaDAO = new daoCategoria(em);
-        daoLibro libroDAO = new daoLibro(em);
+        AutorDAO autorDAO = new AutorDAO(em);
+        CategoriaDAO categoriaDAO = new CategoriaDAO(em);
+        LibroDAO libroDAO = new LibroDAO(em);
 
         boolean running = true;
         while (running) {
@@ -51,7 +51,7 @@ public class Main {
     }
 
     //Menu de los autores java 
-    private static void menuAutores(daoAutor autorDAO) {
+    private static void menuAutores(AutorDAO autorDAO) {
         boolean salir = false;
         while (!salir) {
             System.out.println("\n--- Autores ---");
@@ -74,7 +74,7 @@ public class Main {
         }
     }
 
-    private static void listarAutores(daoAutor autorDAO) {
+    private static void listarAutores(AutorDAO autorDAO) {
         List<Autor> lista = autorDAO.listar();
         if (lista.isEmpty()) {
             System.out.println("No hay autores.");
@@ -83,7 +83,7 @@ public class Main {
         lista.forEach(a -> System.out.println(a.getId() + " - " + a.getNombre() + " (" + a.getNacionalidad() + ")"));
     }
 
-    private static void crearAutor(daoAutor autorDAO) {
+    private static void crearAutor(AutorDAO autorDAO) {
         try {
             Autor a = new Autor();
             System.out.print("Nombre: ");
@@ -100,7 +100,7 @@ public class Main {
         }
     }
 
-    private static void buscarAutor(daoAutor autorDAO) {
+    private static void buscarAutor(AutorDAO autorDAO) {
         System.out.print("ID: ");
         int id = parseIntInput();
         Autor a = autorDAO.buscarPorId(id);
@@ -108,7 +108,7 @@ public class Main {
         else System.out.println(a.getId() + " - " + a.getNombre() + " - " + a.getNacionalidad());
     }
 
-    private static void actualizarAutor(daoAutor autorDAO) {
+    private static void actualizarAutor(AutorDAO autorDAO) {
         System.out.print("ID a actualizar: ");
         int id = parseIntInput();
         Autor existente = autorDAO.buscarPorId(id);
@@ -133,14 +133,14 @@ public class Main {
         }
     }
 
-    private static void eliminarAutor(daoAutor autorDAO) {
+    private static void eliminarAutor(AutorDAO autorDAO) {
         System.out.print("ID a eliminar: ");
         int id = parseIntInput();
         autorDAO.eliminar(id);
         System.out.println("Operación eliminar completada.");
     }
 
-    private static void menuCategorias(daoCategoria categoriaDAO) {
+    private static void menuCategorias(CategoriaDAO categoriaDAO) {
         boolean salir = false;
         while (!salir) {
             System.out.println("\n--- Categorías ---");
@@ -163,7 +163,7 @@ public class Main {
         }
     }
 
-    private static void listarCategorias(daoCategoria categoriaDAO) {
+    private static void listarCategorias(CategoriaDAO categoriaDAO) {
         List<Categoria> lista = categoriaDAO.listar();
         if (lista.isEmpty()) {
             System.out.println("No hay categorías.");
@@ -172,7 +172,7 @@ public class Main {
         lista.forEach(c -> System.out.println(c.getId() + " - " + c.getNombre()));
     }
 
-    private static void crearCategoria(daoCategoria categoriaDAO) {
+    private static void crearCategoria(CategoriaDAO categoriaDAO) {
         Categoria c = new Categoria();
         System.out.print("Nombre categoría: ");
         c.setNombre(sc.nextLine().trim());
@@ -180,7 +180,7 @@ public class Main {
         System.out.println("Categoría creada con ID: " + c.getId());
     }
 
-    private static void buscarCategoria(daoCategoria categoriaDAO) {
+    private static void buscarCategoria(CategoriaDAO categoriaDAO) {
         System.out.print("ID: ");
         int id = parseIntInput();
         Categoria c = categoriaDAO.buscarPorId(id);
@@ -188,7 +188,7 @@ public class Main {
         else System.out.println(c.getId() + " - " + c.getNombre());
     }
 
-    private static void actualizarCategoria(daoCategoria categoriaDAO) {
+    private static void actualizarCategoria(CategoriaDAO categoriaDAO) {
         System.out.print("ID a actualizar: ");
         int id = parseIntInput();
         Categoria existente = categoriaDAO.buscarPorId(id);
@@ -203,14 +203,14 @@ public class Main {
         System.out.println("Categoría actualizada.");
     }
 
-    private static void eliminarCategoria(daoCategoria categoriaDAO) {
+    private static void eliminarCategoria(CategoriaDAO categoriaDAO) {
         System.out.print("ID a eliminar: ");
         int id = parseIntInput();
         categoriaDAO.eliminar(id);
         System.out.println("Operación eliminar completada.");
     }
 
-    private static void menuLibros(daoLibro libroDAO, daoAutor autorDAO, daoCategoria categoriaDAO) {
+    private static void menuLibros(LibroDAO libroDAO, AutorDAO autorDAO, CategoriaDAO categoriaDAO) {
         boolean salir = false;
         while (!salir) {
             System.out.println("\n--- Libros ---");
@@ -233,7 +233,7 @@ public class Main {
         }
     }
 
-    private static void listarLibros(daoLibro libroDAO) {
+    private static void listarLibros(LibroDAO libroDAO) {
         List<Libro> lista = libroDAO.listar();
         if (lista.isEmpty()) {
             System.out.println("No hay libros.");
@@ -242,7 +242,7 @@ public class Main {
         lista.forEach(l -> System.out.println(l.toString()));
     }
 
-    private static void crearLibro(daoLibro libroDAO, daoAutor autorDAO, daoCategoria categoriaDAO) {
+    private static void crearLibro(LibroDAO libroDAO, AutorDAO autorDAO, CategoriaDAO categoriaDAO) {
         try {
             Libro l = new Libro();
             System.out.print("Título: ");
@@ -285,7 +285,7 @@ public class Main {
         }
     }
 
-    private static void buscarLibro(daoLibro libroDAO) {
+    private static void buscarLibro(LibroDAO libroDAO) {
         System.out.print("ID: ");
         int id = parseIntInput();
         Libro l = libroDAO.buscarPorId(id);
@@ -293,7 +293,7 @@ public class Main {
         else System.out.println(l);
     }
 
-    private static void actualizarLibro(daoLibro libroDAO, daoAutor autorDAO, daoCategoria categoriaDAO) {
+    private static void actualizarLibro(LibroDAO libroDAO, AutorDAO autorDAO, CategoriaDAO categoriaDAO) {
         System.out.print("ID a actualizar: ");
         int id = parseIntInput();
         Libro existente = libroDAO.buscarPorId(id);
@@ -343,7 +343,7 @@ public class Main {
         }
     }
 
-    private static void eliminarLibro(daoLibro libroDAO) {
+    private static void eliminarLibro(LibroDAO libroDAO) {
         System.out.print("ID a eliminar: ");
         int id = parseIntInput();
         libroDAO.eliminar(id);
