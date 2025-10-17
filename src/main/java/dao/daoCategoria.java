@@ -18,4 +18,9 @@ public class daoCategoria implements ICRUD<Categoria>{
         }
         return null;
     }
+
+    @Override
+    public Categoria buscarPorId(int id) {
+        return em.find(Categoria.class, id);
+    }
 }
