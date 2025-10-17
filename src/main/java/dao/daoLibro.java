@@ -1,13 +1,13 @@
 package dao;
 
-import entity.Libro;
+import entities.Libro;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class LibroDAO implements ICRUD<Libro> {
+public class daoLibro implements ICRUD<Libro> {
     private final EntityManager em;
-    public LibroDAO(EntityManager em) {
+    public daoLibro(EntityManager em) {
         this.em = em;
     }
     @Override
