@@ -3,6 +3,8 @@ package dao;
 import entities.Categoria;
 import jakarta.persistence.EntityManager;
 
+import java.util.List;
+
 public class daoCategoria implements ICRUD<Categoria>{
     private final EntityManager em;
     public daoCategoria(EntityManager em) {
@@ -43,5 +45,11 @@ public class daoCategoria implements ICRUD<Categoria>{
             em.remove(categoria);
             em.getTransaction().commit();
         }
+    }
+
+    @Override
+    public List<Categoria> listar() {
+        List<Categoria> lista = em.createQuery("from Categoria", Categoria.class).getResultList();
+        return lista;
     }
 }
