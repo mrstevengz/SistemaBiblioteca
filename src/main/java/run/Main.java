@@ -50,6 +50,7 @@ public class Main {
         System.out.println("Aplicación finalizada.");
     }
 
+    //Menu de los autores java 
     private static void menuAutores(daoAutor autorDAO) {
         boolean salir = false;
         while (!salir) {
