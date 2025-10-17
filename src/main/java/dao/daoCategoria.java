@@ -35,4 +35,13 @@ public class daoCategoria implements ICRUD<Categoria>{
         }
         return null;
     }
+    @Override
+    public void eliminar(int id) {
+        Categoria categoria = em.find(Categoria.class, id);
+        if (categoria != null) {
+            em.getTransaction().begin();
+            em.remove(categoria);
+            em.getTransaction().commit();
+        }
+    }
 }
