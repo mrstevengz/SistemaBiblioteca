@@ -8,6 +8,7 @@ import java.util.Date;
 @Entity
 @Table(name = "autores")
 @Getter @Setter
+
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
